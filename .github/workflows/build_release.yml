@@ -123,11 +123,11 @@ jobs:
           generate_release_notes: true
           append_body: true
           body: |
-            ---
-            
             ***Mapping files are provided for internal debugging and crash symbolication only.***
             
             ${{ inputs.update_description }}
+
+            ---
           draft: false
           prerelease: false
           files: |
@@ -142,4 +142,5 @@ jobs:
             wget https://raw.githubusercontent.com/0penPublic/onHit/refs/heads/misc/telegram_on_hit_ci_bot.py
             python3 -m pip install python-telegram-bot==22.5
             python3 telegram_on_hit_ci_bot.py "${{ env.VERSION }}"
+
 
