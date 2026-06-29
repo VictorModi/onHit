@@ -63,6 +63,7 @@ jobs:
           git add app/build.gradle.kts
           git commit -m "[skip ci] chore: bump version to ${{ env.VERSION }}" || exit 0
           git push
+          git pull
 
       - name: Get Version Only
         if: inputs.update_type == 'none'
