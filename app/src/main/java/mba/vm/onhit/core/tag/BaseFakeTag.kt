@@ -7,7 +7,8 @@ import java.lang.reflect.Proxy
 import java.security.SecureRandom
 
 abstract class BaseFakeTag {
-    abstract val name: String
+    open val name: String
+        get() = this::class.java.simpleName
     abstract fun init(uid: ByteArray, bytes: ByteArray): BaseFakeTag
     abstract fun makeEndpoint(nfcClassloader: ClassLoader, tagEndpointInterface: Class<*>): Any
 
@@ -15,11 +16,15 @@ abstract class BaseFakeTag {
         val random = SecureRandom()
         val TAG_TYPE_MAPPING = mapOf(
             Pair("ndef", Ndef::class.java),
-            Pair("mfc", MifareClassical::class.java)
+            Pair("mfc", MifareClassic::class.java)
         )
 
         var lastConnectedTechnology = TagTechnology.Unknown
-        var lastHandle: UInt = 0u
+        var lastHandle: Int = -1
+
+        fun create(tech: String): BaseFakeTag? {
+            return TAG_TYPE_MAPPING[tech]?.getDeclaredConstructor()?.newInstance()
+        }
 
         fun createTagEndpoint(
             nfcClassloader: ClassLoader,
@@ -27,10 +32,10 @@ abstract class BaseFakeTag {
             uid: ByteArray,
             techList: IntArray,
             techExtras: Array<Bundle>,
-            transceive: (cmd: ByteArray) -> Pair<Boolean, ByteArray>,
+            transceive: (cmd: ByteArray) -> ByteArray?,
             ndef: NdefMessage? = null
         ): Any {
-            lastHandle = random.nextInt().toUInt()
+            lastHandle = random.nextInt(Int.MAX_VALUE) + 1
             lastConnectedTechnology = TagTechnology.Unknown
             return Proxy.newProxyInstance(nfcClassloader, arrayOf(tagEndpointInterface)) { _, method, args ->
                 when (method.name) {
@@ -47,30 +52,24 @@ abstract class BaseFakeTag {
                         val data = args?.firstOrNull { it is ByteArray } as? ByteArray
                         val raw = args?.firstOrNull { it is Boolean } as? Boolean
                         val returnCode = args?.firstOrNull { it is IntArray } as? IntArray
-                        if (raw != true) {
-                            if (data != null) {
-                                val result = transceive(data)
-                                if (result.first) {
-                                    returnCode?.set(0, 0)
-                                } else {
-                                    returnCode?.set(0, -4)
-                                }
-                                result.second
+                        if (data != null && raw != null && returnCode != null) {
+                            returnCode[0] = 0
+                            if (raw) {
+                                null
                             } else {
-                                returnCode?.set(0, 0)
-                                byteArrayOf()
+                                transceive(data)
                             }
                         } else {
                             returnCode?.set(0, 0)
-                            byteArrayOf()
+                            null
                         }
                     }
                     "getConnectedTechnology" -> lastConnectedTechnology.flag
                     "getTechList" -> techList
                     "getTechExtras" -> techExtras
                     "isPresent" -> true
-                    "getHandle" -> lastHandle.toInt()
-                    "getTechHandles" -> IntArray(techList.size) { lastHandle.toInt() }
+                    "getHandle" -> lastHandle
+                    "getTechHandles" -> IntArray(techList.size) { lastHandle }
                     else -> {
                         when (method.returnType) {
                             Boolean::class.javaPrimitiveType -> true

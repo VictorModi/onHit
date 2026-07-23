@@ -13,7 +13,8 @@
 ![GitHub Repo size](https://img.shields.io/github/repo-size/0penPublic/onHit?style=flat-square&color=3cb371)
 [![GitHub license](https://img.shields.io/github/license/0penPublic/onHit?style=flat-square)](LICENSE)
 [![GitHub Repo Languages](https://img.shields.io/github/languages/top/0penPublic/onHit?style=flat-square)](https://github.com/0penPublic/onHit/search?l=kotlin)
-[![Telegram](https://img.shields.io/badge/Telegram-on_hit-blue.svg?style=flat-square&color=12b7f5)](https://t.me/on_hit)
+<br />
+[![Telegram](https://img.shields.io/badge/Telegram-Join_Chat-blue.svg?style=for-the-badge&logo=telegram&color=12b7f5)](https://t.me/on_hit)
 
 </div>
 
@@ -75,10 +76,17 @@ Xposed is only required to enable **tagless NDEF replay**, which injects NFC tag
 
     **(需要 Xposed) 重放/模拟**：在文件列表中点击 NDEF 文件。模块将触发 Android 系统的 NFC 分发流程。
  
+## Community / 交流与反馈
+
+[![Telegram](https://img.shields.io/badge/Telegram-Join_Chat-blue.svg?style=for-the-badge&logo=telegram&color=12b7f5)](https://t.me/on_hit)  
+
+欢迎加入我们的 Telegram 群组获取最新动态与交流  
+Join our Telegram group for updates and discussions.
+
 ## Acknowledgments
  Special thanks to the following projects for their invaluable contributions to the community:
  - [LSPosed](https://github.com/LSPosed/LSPosed)
- - [ExXHelper](https://github.com/KyuubiRan/EzXHelper)
+ - [EzXHelper](https://github.com/KyuubiRan/EzXHelper)
  - [AndroidX](https://developer.android.com/jetpack/androidx)
  - [Material Symbols](https://fonts.google.com/icons)
  
@@ -113,10 +121,10 @@ See the `LICENSE` file for full license text.
 
 ## Star History
 
-<a href="https://www.star-history.com/#0penPublic/onHit&type=date&legend=top-left">
+<a href="https://www.star-history.com/?repos=0penPublic%2FonHit&type=date&legend=bottom-right">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=0penPublic/onHit&type=date&theme=dark&legend=top-left" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=0penPublic/onHit&type=date&legend=top-left" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=0penPublic/onHit&type=date&legend=top-left" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=0penPublic/onHit&type=date&theme=dark&legend=bottom-right&sealed_token=85dpLsEIerjDiBFE_JiLS6xeLKMvT3EKS7iJhuXgID1KzYA9l-yhdy0MMCfayr-rmeoXI94TKKeOr-ty51sTL5ogGTERBgUzIznZ2NytBxl9EXwascdhog" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=0penPublic/onHit&type=date&legend=bottom-right&sealed_token=85dpLsEIerjDiBFE_JiLS6xeLKMvT3EKS7iJhuXgID1KzYA9l-yhdy0MMCfayr-rmeoXI94TKKeOr-ty51sTL5ogGTERBgUzIznZ2NytBxl9EXwascdhog" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=0penPublic/onHit&type=date&legend=bottom-right&sealed_token=85dpLsEIerjDiBFE_JiLS6xeLKMvT3EKS7iJhuXgID1KzYA9l-yhdy0MMCfayr-rmeoXI94TKKeOr-ty51sTL5ogGTERBgUzIznZ2NytBxl9EXwascdhog" />
  </picture>
 </a>
